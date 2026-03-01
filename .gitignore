@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual env
+venv/
+.venv/
+
+# OS
+.DS_Store
+
+# Output files
+output/
+*.csv
+*.txt
+
+# VS Code
+.vscode/
