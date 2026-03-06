@@ -1,14 +1,27 @@
 import sys
 import os
 import pandas as pd
+import argparse
 
+def main():
+    parser = argparse.ArgumentParser(description="Expense Analyzer CLI")
 
-def main() -> None:
-    if len(sys.argv) < 2:
-        print("usage: python main.py <filename>")
-        sys.exit(1)
+    parser.add_argument(
+        "file",
+        help="Path to CSV file with expenses"
+    )
 
-    filename = sys.argv[1]
+    parser.add_argument(
+        "--sort",
+        choices=["total", "average", "transactions"],
+        default="total",
+        help="Sort category summary by selected column"
+)
+
+    args = parser.parse_args()
+
+    filename = args.file
+    sort_by = args.sort
 
     # Готовим пути для вывода
     base = os.path.splitext(os.path.basename(filename))[0]
@@ -54,7 +67,7 @@ def main() -> None:
         average="mean",
         transactions="count"
     )
-    summary = summary.sort_values(by="total", ascending=False)
+    summary = summary.sort_values(by=sort_by, ascending=False)
     summary["average"] = summary["average"].round(2)
 
     # TXT отчёт
@@ -74,5 +87,5 @@ def main() -> None:
     print(f"\nSaved:\n- {output_txt}\n- {output_csv}")
 
 
-if __name__ == "__main__":
-    main()
+    if __name__ == "__main__":
+        main()
