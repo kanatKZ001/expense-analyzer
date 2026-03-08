@@ -1,93 +1,30 @@
 # Expense Analyzer CLI
 
-A simple command-line tool for analyzing expenses from a CSV file using **Python** and **pandas**.
+A Python command-line tool for analyzing and visualizing expenses from CSV files.
 
-The program processes a CSV file with expenses and calculates useful statistics such as totals, averages, and category summaries.
+This project demonstrates **data cleaning, aggregation, visualization, and report generation using Python and pandas**.
+It can generate summaries, filter transactions, and create charts for expense analysis.
 
 ---
 
 ## Features
 
-* CLI interface using `argparse`
-* CSV parsing with **pandas**
-* Automatic data cleaning (handles invalid numbers)
-* Category-based expense analysis
-* Sorting results by different metrics
-* Automatic creation of output folder
-* Generates summary reports in `.txt` and `.csv`
+* Analyze expenses from CSV files
+* Clean and validate financial data
+* Group expenses by category
+* Calculate totals, averages, and transaction counts
+* Generate professional CSV reports
+* Create visual charts:
 
----
+  * Category bar chart
+  * Category pie chart
+  * Monthly expense trend
+* Filter expenses by:
 
-## Installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/kanatkZ001/expense-analyzer.git
-cd expense-analyzer
-```
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-## Usage
-
-Run the program with a CSV file:
-
-```bash
-python main.py sample_data/expenses.csv
-```
-
-### Optional arguments
-
-Sort the category summary by different columns:
-
-```bash
-python main.py sample_data/expenses.csv --sort total
-python main.py sample_data/expenses.csv --sort average
-python main.py sample_data/expenses.csv --sort transactions
-```
-
----
-
-## Example CSV format
-
-```csv
-category,amount
-food,1200
-books,3000
-transport,700
-food,2400
-transport,700
-```
-
----
-
-## Example Output
-
-Terminal output:
-
-```text
-Category Summary:
-
-category   total   average   transactions
-food       3600    1200.0    3
-books      3000    3000.0    1
-transport  1400    700.0     2
-```
-
-Generated files:
-
-```text
-output/
- ├── expenses_summary.txt
- └── expenses_summary.csv
-```
+  * category
+  * minimum amount
+  * month
+* Command-line interface for flexible analysis
 
 ---
 
@@ -96,14 +33,123 @@ output/
 ```
 expense-analyzer
 │
-├── main.py
-├── requirements.txt
-├── README.md
+├── main.py              # CLI entry point
+├── analyzer.py          # Data processing logic
+├── export.py            # Report generation
+├── visualization.py     # Charts and graphs
 │
 ├── sample_data
 │   └── expenses.csv
 │
-└── output
+├── output
+│   └── charts
+│
+├── requirements.txt
+├── README.md
+└── .gitignore
+```
+
+---
+
+## Installation
+
+Clone the repository:
+
+```
+git clone https://github.com/YOUR_USERNAME/expense-analyzer.git
+cd expense-analyzer
+```
+
+Install dependencies:
+
+```
+pip install -r requirements.txt
+```
+
+---
+
+## Example Dataset
+
+Example CSV format:
+
+```
+date,category,amount
+2026-01-05,Food,120
+2026-01-07,Transport,45
+2026-01-10,Books,320
+2026-01-15,Food,230
+```
+
+---
+
+## Usage
+
+Basic analysis:
+
+```
+python main.py sample_data/expenses.csv
+```
+
+Sort categories by average:
+
+```
+python main.py sample_data/expenses.csv --sort average
+```
+
+Show top 5 categories:
+
+```
+python main.py sample_data/expenses.csv --top 5
+```
+
+Filter by category:
+
+```
+python main.py sample_data/expenses.csv --category Food
+```
+
+Filter by month:
+
+```
+python main.py sample_data/expenses.csv --month 2026-02
+```
+
+Generate category chart:
+
+```
+python main.py sample_data/expenses.csv --chart bar
+```
+
+Generate monthly trend chart:
+
+```
+python main.py sample_data/expenses.csv --monthly-chart
+```
+
+---
+
+## Output
+
+The tool generates reports inside the `output` folder:
+
+```
+output/
+├── expenses_summary.txt
+├── expenses_summary.csv
+├── expenses_monthly_summary.csv
+└── charts/
+    ├── expenses_bar.png
+    ├── expenses_pie.png
+    └── expenses_monthly_trend.png
+```
+
+Example CSV report:
+
+```
+rank,category,total_amount,average_amount,transactions_count,share_percent
+1,Rent,7200.00,1200.00,6,38.14
+2,Food,2735.00,227.92,12,14.50
+3,Shopping,2710.00,451.67,6,14.37
 ```
 
 ---
@@ -112,21 +158,19 @@ expense-analyzer
 
 * Python
 * pandas
+* matplotlib
 * argparse
-* Git
-* GitHub
 
 ---
 
-## Future Improvements
+## Possible Improvements
 
-Possible improvements for the project:
+Future enhancements could include:
 
-* expense visualization (charts)
-* monthly expense analysis
-* multiple currency support
-* interactive CLI options
-* exporting reports to more formats
+* interactive dashboards (Streamlit)
+* export to Excel reports
+* automated data pipelines
+* web interface
 
 ---
 
@@ -134,9 +178,6 @@ Possible improvements for the project:
 
 Kanat Zhumatov
 
-Computer Science student interested in:
+Computer Science student interested in **data analysis, automation, and Python tools**.
 
-* Data Science
-* Machine Learning
-* Finance
-* Software Development
+---
