@@ -56,7 +56,7 @@ expense-analyzer
 Clone the repository:
 
 ```
-git clone https://github.com/YOUR_USERNAME/expense-analyzer.git
+git clone https://github.com/kanatkZ001/expense-analyzer.git
 cd expense-analyzer
 ```
 
